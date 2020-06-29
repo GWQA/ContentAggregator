@@ -1,0 +1,958 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ContentAggregationFlowchart" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="624,922.666666666667" sap2010:WorkflowViewState.IdRef="ContentAggregationFlowchart_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="24">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="46">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="ContentAggregationFlowchart" sap:VirtualizedContainerService.HintSize="634,718" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="UserDB" />
+      <Variable x:TypeArguments="x:String" Name="ITV" />
+      <Variable x:TypeArguments="x:String" Name="SkySports" />
+      <Variable x:TypeArguments="x:String" Name="ESPN" />
+      <Variable x:TypeArguments="x:String" Name="IMDB" />
+      <Variable x:TypeArguments="x:String" Name="RottenTomatoes" />
+      <Variable x:TypeArguments="x:String" Name="ScreenRant" />
+      <Variable x:TypeArguments="x:String" Name="Gamespot" />
+      <Variable x:TypeArguments="x:String" Name="IGN" />
+      <Variable x:TypeArguments="x:String" Name="PlayStation" />
+      <Variable x:TypeArguments="x:String" Name="YahooSports" />
+      <Variable x:TypeArguments="sd:DataTable" Name="ITVData" />
+      <Variable x:TypeArguments="sd:DataTable" Name="YahooSportsData" />
+      <Variable x:TypeArguments="sd:DataTable" Name="ESPNData" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="IMDBData" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="RottenTomatoesData" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ScreenRantData" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="GamespotData" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="IGNData" />
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="PlayStationData" />
+      <Variable x:TypeArguments="ui:QueueItem" Name="Transation" />
+      <Variable x:TypeArguments="njl:JArray" Name="Config" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">60,74.6666666666667</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">300,77.1666666666667 300,96</av:PointCollection>
+        <x:Double x:Key="Height">682</x:Double>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID7</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID6">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">200,186</av:Point>
+          <av:Size x:Key="ShapeSize">200,68</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">300,254 300,286</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Sequence DisplayName="Gaming" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_7">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Sequence DisplayName="Gamespot" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open https://www.gamespot.com/games/" sap:VirtualizedContainerService.HintSize="485.333333333333,362" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="[Config(1)(&quot;GamingWebsite1&quot;).ToString]">
+            <ui:OpenBrowser.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[GamespotData]" DisplayName="Extract Structured Data 'SECTION'" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='Gamespot - Latest Gaming Stories:' attr='text'&gt;&lt;webctrl tag='div' class='horizontal-card-item '/&gt;&lt;webctrl tag='div' class='horizontal-card-item__content ' idx='1'/&gt;&lt;webctrl tag='a' class='horizontal-card-item__link ' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="3" SimulateClick="True">
+                    <ui:ExtractData.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3fd5dc40-7381-495d-a991-b43be8d6fd8a" InformativeScreenshot="2f0c92ee005962303102f3875d990ed6" Selector="&lt;webctrl parentid='river' tag='SECTION' /&gt;" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:ExtractData.Target>
+                  </ui:ExtractData>
+                  <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="CloseTab_1" />
+                </Sequence>
+              </ActivityAction>
+            </ui:OpenBrowser.Body>
+          </ui:OpenBrowser>
+          <ui:OutputDataTable DataTable="[GamespotData]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="485.333333333333,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[Gamespot]" />
+          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="485.333333333333,62" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[Gamespot.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" />
+        </Sequence>
+        <Sequence DisplayName="IGN" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open https://www.ign.com/news" sap:VirtualizedContainerService.HintSize="485.333333333333,362" sap2010:WorkflowViewState.IdRef="OpenBrowser_2" Url="[Config(1)(&quot;GamingWebsite2&quot;).ToString]">
+            <ui:OpenBrowser.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[IGNData]" DisplayName="Extract Structured Data 'MAIN  main-content'" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='IGN - Latest News:' attr='text'&gt;&lt;webctrl tag='div' class='jsx-1981396811 ' idx='1'/&gt;&lt;webctrl tag='section' class='jsx-3995683049 grid page-content content-feed-grid' idx='1'/&gt;&lt;webctrl tag='section' class='jsx-3272103915 main-content' idx='1'/&gt;&lt;webctrl tag='article' class='jsx-3637017486 content-item row'/&gt;&lt;webctrl tag='div' class='jsx-3637017486 item-body' idx='1'/&gt;&lt;webctrl tag='div' class='jsx-3637017486 item-details' idx='1'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;webctrl tag='h3' class='jsx-3637017486 item-title' idx='1'/&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='span' class='jsx-3637017486 item-title-link' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ExtractData_2" MaxNumberOfResults="3" SimulateClick="True">
+                    <ui:ExtractData.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="cd6c95d6-8664-48be-8e22-c2978ef56ba9" InformativeScreenshot="38f423e11f37158a1044e1f0ebe3bcd8" Selector="&lt;webctrl tag='MAIN' /&gt;" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:ExtractData.Target>
+                  </ui:ExtractData>
+                  <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="CloseTab_2" />
+                </Sequence>
+              </ActivityAction>
+            </ui:OpenBrowser.Body>
+          </ui:OpenBrowser>
+          <ui:OutputDataTable DataTable="[IGNData]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="485.333333333333,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[IGN]" />
+          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="485.333333333333,62" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[IGN.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" />
+        </Sequence>
+        <Sequence DisplayName="PlayStation" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open https://blog.playstation.com/" sap:VirtualizedContainerService.HintSize="485.333333333333,362.666666666667" sap2010:WorkflowViewState.IdRef="OpenBrowser_3" Url="[Config(1)(&quot;GamingWebsite3&quot;).ToString]">
+            <ui:OpenBrowser.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[PlayStationData]" DisplayName="Extract Structured Data 'MAIN  primary'" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='PlayStation - Trending Stories:' attr='text'&gt;&lt;webctrl tag='div' class='main-content home-main-section' idx='1'/&gt;&lt;webctrl tag='section' class='content-section trending-posts' idx='1'/&gt;&lt;webctrl tag='div' class='four-across-grid' idx='1'/&gt;&lt;webctrl tag='article'/&gt;&lt;webctrl tag='div' class='post-card__content' idx='1'/&gt;&lt;webctrl tag='h3' class='post-card__title' idx='1'/&gt;&lt;webctrl tag='a' class='post-card__title-link' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="3" SimulateClick="True">
+                    <ui:ExtractData.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="733bebf3-4319-435c-bfbe-c801c621bb9d" InformativeScreenshot="41ac7495abb6a53d9d446306df764f03" Selector="&lt;webctrl tag='MAIN' /&gt;" WaitForReady="COMPLETE">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                      </ui:Target>
+                    </ui:ExtractData.Target>
+                  </ui:ExtractData>
+                  <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="CloseTab_3" />
+                </Sequence>
+              </ActivityAction>
+            </ui:OpenBrowser.Body>
+          </ui:OpenBrowser>
+          <ui:OutputDataTable DataTable="[PlayStationData]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="485.333333333333,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_3" Text="[PlayStation]" />
+          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="485.333333333333,62" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[PlayStation.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" />
+        </Sequence>
+      </Sequence>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">200,286</av:Point>
+              <av:Size x:Key="ShapeSize">200,68</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">300,354 300,386</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="Film" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_14">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="IMDB" sap:VirtualizedContainerService.HintSize="527.333333333333,619.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open https://www.imdb.com/news/celebrity/?ref_=nv_cel_nw" sap:VirtualizedContainerService.HintSize="485.333333333333,362.666666666667" sap2010:WorkflowViewState.IdRef="OpenBrowser_4" Url="[Config(1)(&quot;FilmWebsite1&quot;).ToString]">
+                <ui:OpenBrowser.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[IMDBData]" DisplayName="Extract Structured Data 'SECTION  news-article-l...'" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='IMDB - Celeb News:' attr='text'&gt;&lt;webctrl tag='article' class='ipl-zebra-list__item news-article'/&gt;&lt;webctrl tag='header' class='news-article__header' idx='1'/&gt;&lt;webctrl tag='h2' class='news-article__title' idx='1'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ExtractData_4" MaxNumberOfResults="3" SimulateClick="True">
+                        <ui:ExtractData.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a0b81db5-f4a9-48ce-9694-c61390cde2a7" InformativeScreenshot="6ad75701c19449a68fcb4f4c2b436ce3" Selector="&lt;webctrl id='news-article-list' tag='SECTION' /&gt;" WaitForReady="COMPLETE">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                          </ui:Target>
+                        </ui:ExtractData.Target>
+                      </ui:ExtractData>
+                      <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="CloseTab_4" />
+                    </Sequence>
+                  </ActivityAction>
+                </ui:OpenBrowser.Body>
+              </ui:OpenBrowser>
+              <ui:OutputDataTable DataTable="[IMDBData]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="485.333333333333,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_4" Text="[IMDB]" />
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="485.333333333333,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_4" Text="[IMDB.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" />
+            </Sequence>
+            <Sequence DisplayName="RottenTomatoes" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_11">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open https://www.rottentomatoes.com/browse/upcoming" sap:VirtualizedContainerService.HintSize="485.333333333333,362.666666666667" sap2010:WorkflowViewState.IdRef="OpenBrowser_5" Url="[Config(1)(&quot;FilmWebsite2&quot;).ToString]">
+                <ui:OpenBrowser.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[RottenTomatoesData]" DisplayName="Extract Structured Data 'DIV  main-page-content'" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='RottenTomatoes - Coming Soon:' attr='text'&gt;&lt;webctrl tag='div' class='layout browse-content js-browse-content__container' idx='1'/&gt;&lt;webctrl tag='div' class='layout__column layout__column--main' idx='1'/&gt;&lt;webctrl tag='div' class='media-list js-media-list-container' idx='1'/&gt;&lt;webctrl tag='div' class='media-list__item'/&gt;&lt;webctrl tag='div' class='media-list__movie-info' idx='1'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;webctrl tag='div' class='media-list__title' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ExtractData_5" MaxNumberOfResults="3" SimulateClick="True">
+                        <ui:ExtractData.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="beb43984-c237-4477-bff7-cc3d46d9544c" InformativeScreenshot="3182dd34a497098091e18aa373c46900" Selector="&lt;webctrl id='main-page-content' tag='DIV' /&gt;" WaitForReady="COMPLETE">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                          </ui:Target>
+                        </ui:ExtractData.Target>
+                      </ui:ExtractData>
+                      <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="CloseTab_5" />
+                    </Sequence>
+                  </ActivityAction>
+                </ui:OpenBrowser.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:OpenBrowser>
+              <ui:OutputDataTable DataTable="[RottenTomatoesData]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="485.333333333333,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_5" Text="[RottenTomatoes]" />
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="485.333333333333,62" sap2010:WorkflowViewState.IdRef="WriteLine_5" Text="[RottenTomatoes.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" />
+            </Sequence>
+            <Sequence DisplayName="ScreenRant" sap:VirtualizedContainerService.HintSize="200,69.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_13">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open https://screenrant.com/movie-news/" sap:VirtualizedContainerService.HintSize="485.333333333333,362.666666666667" sap2010:WorkflowViewState.IdRef="OpenBrowser_6" Url="[Config(1)(&quot;FilmWebsite3&quot;).ToString]">
+                <ui:OpenBrowser.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[ScreenRantData]" DisplayName="Extract Structured Data 'UL'" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='ScreenRant - Upcoming Movies:' attr='text'&gt;&lt;webctrl tag='li'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ExtractData_6" MaxNumberOfResults="3" SimulateClick="True">
+                        <ui:ExtractData.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e5d8af96-74f4-4570-bf08-d8921e1b7ea6" InformativeScreenshot="e87574eac4b568041136f76d2c68cafa" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;aside&amp;gt;section&amp;gt;ul' parentid='secondary' tag='UL' /&gt;" WaitForReady="COMPLETE">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                          </ui:Target>
+                        </ui:ExtractData.Target>
+                      </ui:ExtractData>
+                      <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="CloseTab_6" />
+                    </Sequence>
+                  </ActivityAction>
+                </ui:OpenBrowser.Body>
+              </ui:OpenBrowser>
+              <ui:OutputDataTable DataTable="[ScreenRantData]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="485.333333333333,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_6" Text="[ScreenRant]" />
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="485.333333333333,62" sap2010:WorkflowViewState.IdRef="WriteLine_6" Text="[ScreenRant.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" />
+            </Sequence>
+          </Sequence>
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">200,386</av:Point>
+                  <av:Size x:Key="ShapeSize">200,68</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">300,454 300,509</av:PointCollection>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Sequence DisplayName="Sport" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Sequence DisplayName="ITV" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open https://www.itv.com/news/sport/" sap:VirtualizedContainerService.HintSize="485.333333333333,362.666666666667" sap2010:WorkflowViewState.IdRef="OpenBrowser_7" Url="[Config(1)(&quot;SportWebsite1&quot;).ToString]">
+                    <ui:OpenBrowser.Body>
+                      <ActivityAction x:TypeArguments="x:Object">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[ITVData]" DisplayName="Extract Structured Data 'DIV  stream'" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='ITV - Sports Updates:' attr='text'&gt;&lt;webctrl tag='div' class='stream__updates__content' idx='1'/&gt;&lt;webctrl tag='article' class='update article-update'/&gt;&lt;webctrl tag='header' class='update__header' idx='1'/&gt;&lt;webctrl tag='h2' class='update__title' idx='1'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ExtractData_7" MaxNumberOfResults="3" SimulateClick="True">
+                            <ui:ExtractData.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e5c3451d-d8bc-4154-a719-56b05c1fdcc6" InformativeScreenshot="510b5912d79028cd4ec15ef6d35d929c" Selector="&lt;webctrl id='stream' tag='DIV' /&gt;" WaitForReady="COMPLETE">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                              </ui:Target>
+                            </ui:ExtractData.Target>
+                          </ui:ExtractData>
+                          <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="CloseTab_7" />
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:OpenBrowser.Body>
+                  </ui:OpenBrowser>
+                  <ui:OutputDataTable DataTable="[ITVData]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="485.333333333333,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_7" Text="[ITV]" />
+                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="485.333333333333,62" sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="[ITV.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" />
+                </Sequence>
+                <Sequence DisplayName="Yahoo Sports" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open https://sports.yahoo.com/" sap:VirtualizedContainerService.HintSize="485.333333333333,362.666666666667" sap2010:WorkflowViewState.IdRef="OpenBrowser_8" Url="[Config(1)(&quot;SportWebsite2&quot;).ToString]">
+                    <ui:OpenBrowser.Body>
+                      <ActivityAction x:TypeArguments="x:Object">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[YahooSportsData]" DisplayName="Extract Structured Data 'UL'" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='Yahoo! Sports - Headlines:' attr='text'&gt;&lt;webctrl tag='li' class='YahooSans Fw(400)! D(f) Fld(r) Py(5px) Fz(13px) Lh(18px) C($c-fuji-grey-n)'/&gt;&lt;webctrl tag='a' class='C(#000) C(link-color):h D(f) Fld(r) Flxg(7) Td(n) W(100%)' idx='1'/&gt;&lt;webctrl tag='span' class='D(f) Fld(r) Flxb(175px) Flxg(6) Fz(12px)' idx='1'/&gt;&lt;webctrl tag='span' class='D(b) Fw(400) Fz(12px) Lh(16px)' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ExtractData_8" MaxNumberOfResults="3" SimulateClick="True">
+                            <ui:ExtractData.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="63593443-f958-4efd-99ef-06cb20e393fb" InformativeScreenshot="afeec3e4f62036b538f02d50d964bf76" Selector="&lt;webctrl parentid='Col2-1-Headlines-Proxy' tag='UL' /&gt;" WaitForReady="COMPLETE">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                              </ui:Target>
+                            </ui:ExtractData.Target>
+                          </ui:ExtractData>
+                          <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="CloseTab_8" />
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:OpenBrowser.Body>
+                  </ui:OpenBrowser>
+                  <ui:OutputDataTable DataTable="[YahooSportsData]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="485.333333333333,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_8" Text="[YahooSports]" />
+                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="485.333333333333,62.6666666666667" sap2010:WorkflowViewState.IdRef="WriteLine_8" Text="[YahooSports.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" />
+                </Sequence>
+                <Sequence DisplayName="ESPN" sap:VirtualizedContainerService.HintSize="527.333333333333,618" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open https://www.espn.co.uk/" sap:VirtualizedContainerService.HintSize="485.333333333333,362" sap2010:WorkflowViewState.IdRef="OpenBrowser_9" Url="[Config(1)(&quot;SportWebsite3&quot;).ToString]">
+                    <ui:OpenBrowser.Body>
+                      <ActivityAction x:TypeArguments="x:Object">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[ESPNData]" DisplayName="Extract Structured Data 'UL'" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='ESPN - Top Headlines:' attr='text'&gt;&lt;webctrl tag='li'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="ExtractData_9" MaxNumberOfResults="3" SimulateClick="True">
+                            <ui:ExtractData.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="653956ea-8f6e-46da-a9ea-61654d9c68b7" InformativeScreenshot="4b187d8433ab1f1447f335418e3478a0" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;section&amp;gt;section&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;section&amp;gt;ul' parentid='main-container' tag='UL' /&gt;" WaitForReady="COMPLETE">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                              </ui:Target>
+                            </ui:ExtractData.Target>
+                          </ui:ExtractData>
+                          <ui:CloseTab Browser="{x:Null}" DisplayName="Close Tab" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="CloseTab_9" />
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:OpenBrowser.Body>
+                  </ui:OpenBrowser>
+                  <ui:OutputDataTable DataTable="[ESPNData]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="485.333333333333,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_9" Text="[ESPN]" />
+                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="485.333333333333,62" sap2010:WorkflowViewState.IdRef="WriteLine_9" Text="[ESPN.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" />
+                </Sequence>
+              </Sequence>
+              <FlowStep.Next>
+                <FlowStep x:Name="__ReferenceID0">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:Point x:Key="ShapeLocation">200,509</av:Point>
+                      <av:Size x:Key="ShapeSize">200,22</av:Size>
+                      <av:PointCollection x:Key="ConnectorLocation">300,531 300,566.666666666667</av:PointCollection>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:GetQueueItem ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Get Transaction Item" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="GetQueueItem_1" QueueType="ToborQueue" TransactionItem="[Transation]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:GetQueueItem>
+                  <FlowStep.Next>
+                    <FlowDecision x:Name="__ReferenceID3" Condition="[Transation is Nothing]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="78.6666666666667,86.6666666666667" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <av:Point x:Key="ShapeLocation">260.666666666667,566.666666666667</av:Point>
+                          <av:Size x:Key="ShapeSize">78.6666666666667,86.6666666666667</av:Size>
+                          <av:PointCollection x:Key="FalseConnector">339.333333333333,610 390,610</av:PointCollection>
+                          <av:PointCollection x:Key="TrueConnector">260.666666666667,610 210,610</av:PointCollection>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <FlowDecision.True>
+                        <FlowStep x:Name="__ReferenceID4">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:Point x:Key="ShapeLocation">10,584</av:Point>
+                              <av:Size x:Key="ShapeSize">200,52</av:Size>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:MessageBox ChosenButton="{x:Null}" Caption="Complete" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Transation process complete&quot;]">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:MessageBox>
+                        </FlowStep>
+                      </FlowDecision.True>
+                      <FlowDecision.False>
+                        <FlowStep x:Name="__ReferenceID5">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:Point x:Key="ShapeLocation">390,576</av:Point>
+                              <av:Size x:Key="ShapeSize">200,68</av:Size>
+                              <av:PointCollection x:Key="ConnectorLocation">490,576 490,520 400,520</av:PointCollection>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Sequence DisplayName="Email Content to User" sap:VirtualizedContainerService.HintSize="526,664" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If Condition="[Transation.SpecificContent(&quot;Intervals&quot;).ToString.Equals(&quot;Daily&quot;)]" DisplayName="If Daily" sap:VirtualizedContainerService.HintSize="484,480" sap2010:WorkflowViewState.IdRef="If_7">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If.Then>
+                                <Sequence sap:VirtualizedContainerService.HintSize="242,328" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If Condition="[Transation.SpecificContent(&quot;Content Category&quot;).ToString.Equals(&quot;Sport&quot;)]" DisplayName="Sport If Statement" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="If_4">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If.Then>
+                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438.666666666667,535.333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                                        <TryCatch.Try>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="376,300.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hey &quot; + Transation.SpecificContent(&quot;First Name&quot;).ToString + &quot; &quot; + Transation.SpecificContent(&quot;Last Name&quot;).ToString + &quot;,&quot; + Environment.NewLine + Environment.NewLine + &quot;Here's your &quot; + Transation.SpecificContent(&quot;Intervals&quot;).ToString.ToLower + &quot; content!&quot; + Environment.NewLine + Environment.NewLine + ITV.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;) + Environment.NewLine + YahooSports.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;) + Environment.NewLine + ESPN.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,146.666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_4" IsBodyHtml="False" IsDraft="False" Subject="Content Aggregator App - Sport - Daily" To="[Transation.SpecificContent(&quot;Email&quot;).ToString]">
+                                              <ui:SendOutlookMail.Files>
+                                                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                              </ui:SendOutlookMail.Files>
+                                            </ui:SendOutlookMail>
+                                            <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_2" Status="Successful" TransactionItem="[Transation]">
+                                              <ui:SetTransactionStatus.Analytics>
+                                                <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                              </ui:SetTransactionStatus.Analytics>
+                                              <ui:SetTransactionStatus.Output>
+                                                <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                              </ui:SetTransactionStatus.Output>
+                                            </ui:SetTransactionStatus>
+                                          </Sequence>
+                                        </TryCatch.Try>
+                                        <TryCatch.Catches>
+                                          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.666666666667,21.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ActivityAction x:TypeArguments="s:Exception">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                              </ActivityAction.Argument>
+                                              <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_3" Reason="Email failed to send" Status="Failed" TransactionItem="[Transation]">
+                                                <ui:SetTransactionStatus.Analytics>
+                                                  <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                                </ui:SetTransactionStatus.Analytics>
+                                                <ui:SetTransactionStatus.Output>
+                                                  <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                                </ui:SetTransactionStatus.Output>
+                                              </ui:SetTransactionStatus>
+                                            </ActivityAction>
+                                          </Catch>
+                                        </TryCatch.Catches>
+                                      </TryCatch>
+                                    </If.Then>
+                                  </If>
+                                  <If Condition="[Transation.SpecificContent(&quot;Content Category&quot;).ToString.Equals(&quot;Film&quot;)]" DisplayName="Film If Statement" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="If_5">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If.Then>
+                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438.666666666667,535.333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                                        <TryCatch.Try>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="376,300.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hey &quot; + Transation.SpecificContent(&quot;First Name&quot;).ToString + &quot; &quot; + Transation.SpecificContent(&quot;Last Name&quot;).ToString + &quot;,&quot; + Environment.NewLine + Environment.NewLine + &quot;Here's your &quot; + Transation.SpecificContent(&quot;Intervals&quot;).ToString.ToLower + &quot; content!&quot; + Environment.NewLine + Environment.NewLine + IMDB.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;) + Environment.NewLine + RottenTomatoes.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;) + Environment.NewLine + ScreenRant.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,146.666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_5" IsBodyHtml="False" IsDraft="False" Subject="Content Aggregator App - Film - Daily" To="[Transation.SpecificContent(&quot;Email&quot;).ToString]">
+                                              <ui:SendOutlookMail.Files>
+                                                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                              </ui:SendOutlookMail.Files>
+                                            </ui:SendOutlookMail>
+                                            <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_4" Status="Successful" TransactionItem="[Transation]">
+                                              <ui:SetTransactionStatus.Analytics>
+                                                <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                              </ui:SetTransactionStatus.Analytics>
+                                              <ui:SetTransactionStatus.Output>
+                                                <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                              </ui:SetTransactionStatus.Output>
+                                            </ui:SetTransactionStatus>
+                                          </Sequence>
+                                        </TryCatch.Try>
+                                        <TryCatch.Catches>
+                                          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.666666666667,21.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ActivityAction x:TypeArguments="s:Exception">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                              </ActivityAction.Argument>
+                                              <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_5" Reason="Email failed to send" Status="Failed" TransactionItem="[Transation]">
+                                                <ui:SetTransactionStatus.Analytics>
+                                                  <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                                </ui:SetTransactionStatus.Analytics>
+                                                <ui:SetTransactionStatus.Output>
+                                                  <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                                </ui:SetTransactionStatus.Output>
+                                              </ui:SetTransactionStatus>
+                                            </ActivityAction>
+                                          </Catch>
+                                        </TryCatch.Catches>
+                                      </TryCatch>
+                                    </If.Then>
+                                  </If>
+                                  <If Condition="[Transation.SpecificContent(&quot;Content Category&quot;).ToString.Equals(&quot;Gaming&quot;)]" DisplayName="Gaming If Statement" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="If_6">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If.Then>
+                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438.666666666667,535.333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                                        <TryCatch.Try>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="376,300.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hey &quot; + Transation.SpecificContent(&quot;First Name&quot;).ToString + &quot; &quot; + Transation.SpecificContent(&quot;Last Name&quot;).ToString + &quot;,&quot; + Environment.NewLine + Environment.NewLine + &quot;Here's your &quot; + Transation.SpecificContent(&quot;Intervals&quot;).ToString.ToLower + &quot; content!&quot; + Environment.NewLine + Environment.NewLine + IGN.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;) + Environment.NewLine + Gamespot.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;) + Environment.NewLine + PlayStation.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,146.666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_6" IsBodyHtml="False" IsDraft="False" Subject="Content Aggregator App - Gaming - Daily" To="[Transation.SpecificContent(&quot;Email&quot;).ToString]">
+                                              <ui:SendOutlookMail.Files>
+                                                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                              </ui:SendOutlookMail.Files>
+                                            </ui:SendOutlookMail>
+                                            <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_6" Status="Successful" TransactionItem="[Transation]">
+                                              <ui:SetTransactionStatus.Analytics>
+                                                <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                              </ui:SetTransactionStatus.Analytics>
+                                              <ui:SetTransactionStatus.Output>
+                                                <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                              </ui:SetTransactionStatus.Output>
+                                            </ui:SetTransactionStatus>
+                                          </Sequence>
+                                        </TryCatch.Try>
+                                        <TryCatch.Catches>
+                                          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.666666666667,21.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ActivityAction x:TypeArguments="s:Exception">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                              </ActivityAction.Argument>
+                                              <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_7" Reason="Email failed to send" Status="Failed" TransactionItem="[Transation]">
+                                                <ui:SetTransactionStatus.Analytics>
+                                                  <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                                </ui:SetTransactionStatus.Analytics>
+                                                <ui:SetTransactionStatus.Output>
+                                                  <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                                </ui:SetTransactionStatus.Output>
+                                              </ui:SetTransactionStatus>
+                                            </ActivityAction>
+                                          </Catch>
+                                        </TryCatch.Catches>
+                                      </TryCatch>
+                                    </If.Then>
+                                  </If>
+                                </Sequence>
+                              </If.Then>
+                            </If>
+                            <If Condition="[Transation.SpecificContent(&quot;Intervals&quot;).ToString.Equals(&quot;Weekdays&quot;)]" DisplayName="If Weekdays" sap:VirtualizedContainerService.HintSize="484,52" sap2010:WorkflowViewState.IdRef="If_11">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <If.Then>
+                                <Sequence sap:VirtualizedContainerService.HintSize="242,328" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If Condition="[Transation.SpecificContent(&quot;Content Category&quot;).ToString.Equals(&quot;Sport&quot;)]" DisplayName="Sport If Statement" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="If_8">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If.Then>
+                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438.666666666667,535.333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+                                        <TryCatch.Try>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="376,300.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hey &quot; + Transation.SpecificContent(&quot;First Name&quot;).ToString + &quot; &quot; + Transation.SpecificContent(&quot;Last Name&quot;).ToString + &quot;,&quot; + Environment.NewLine + Environment.NewLine + &quot;Here's your &quot; + Transation.SpecificContent(&quot;Intervals&quot;).ToString.ToLower + &quot; content!&quot; + Environment.NewLine + Environment.NewLine + ITV.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;) + Environment.NewLine + YahooSports.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;) + Environment.NewLine + ESPN.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,146.666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_7" IsBodyHtml="False" IsDraft="False" Subject="Content Aggregator App - Sport - Weekdays" To="[Transation.SpecificContent(&quot;Email&quot;).ToString]">
+                                              <ui:SendOutlookMail.Files>
+                                                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                              </ui:SendOutlookMail.Files>
+                                            </ui:SendOutlookMail>
+                                            <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_8" Status="Successful" TransactionItem="[Transation]">
+                                              <ui:SetTransactionStatus.Analytics>
+                                                <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                              </ui:SetTransactionStatus.Analytics>
+                                              <ui:SetTransactionStatus.Output>
+                                                <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                              </ui:SetTransactionStatus.Output>
+                                            </ui:SetTransactionStatus>
+                                          </Sequence>
+                                        </TryCatch.Try>
+                                        <TryCatch.Catches>
+                                          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.666666666667,21.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ActivityAction x:TypeArguments="s:Exception">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                              </ActivityAction.Argument>
+                                              <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_9" Reason="Email failed to send" Status="Failed" TransactionItem="[Transation]">
+                                                <ui:SetTransactionStatus.Analytics>
+                                                  <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                                </ui:SetTransactionStatus.Analytics>
+                                                <ui:SetTransactionStatus.Output>
+                                                  <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                                </ui:SetTransactionStatus.Output>
+                                              </ui:SetTransactionStatus>
+                                            </ActivityAction>
+                                          </Catch>
+                                        </TryCatch.Catches>
+                                      </TryCatch>
+                                    </If.Then>
+                                  </If>
+                                  <If Condition="[Transation.SpecificContent(&quot;Content Category&quot;).ToString.Equals(&quot;Film&quot;)]" DisplayName="Film If Statement" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="If_9">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If.Then>
+                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438.666666666667,535.333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+                                        <TryCatch.Try>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="376,300.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hey &quot; + Transation.SpecificContent(&quot;First Name&quot;).ToString + &quot; &quot; + Transation.SpecificContent(&quot;Last Name&quot;).ToString + &quot;,&quot; + Environment.NewLine + Environment.NewLine + &quot;Here's your &quot; + Transation.SpecificContent(&quot;Intervals&quot;).ToString.ToLower + &quot; content!&quot; + Environment.NewLine + Environment.NewLine + IMDB.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;) + Environment.NewLine + RottenTomatoes.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;) + Environment.NewLine + ScreenRant.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,146.666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_8" IsBodyHtml="False" IsDraft="False" Subject="Content Aggregator App - Film - Weekdays" To="[Transation.SpecificContent(&quot;Email&quot;).ToString]">
+                                              <ui:SendOutlookMail.Files>
+                                                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                              </ui:SendOutlookMail.Files>
+                                            </ui:SendOutlookMail>
+                                            <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_10" Status="Successful" TransactionItem="[Transation]">
+                                              <ui:SetTransactionStatus.Analytics>
+                                                <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                              </ui:SetTransactionStatus.Analytics>
+                                              <ui:SetTransactionStatus.Output>
+                                                <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                              </ui:SetTransactionStatus.Output>
+                                            </ui:SetTransactionStatus>
+                                          </Sequence>
+                                        </TryCatch.Try>
+                                        <TryCatch.Catches>
+                                          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.666666666667,21.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ActivityAction x:TypeArguments="s:Exception">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                              </ActivityAction.Argument>
+                                              <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_11" Reason="Email failed to send" Status="Failed" TransactionItem="[Transation]">
+                                                <ui:SetTransactionStatus.Analytics>
+                                                  <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                                </ui:SetTransactionStatus.Analytics>
+                                                <ui:SetTransactionStatus.Output>
+                                                  <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                                </ui:SetTransactionStatus.Output>
+                                              </ui:SetTransactionStatus>
+                                            </ActivityAction>
+                                          </Catch>
+                                        </TryCatch.Catches>
+                                      </TryCatch>
+                                    </If.Then>
+                                  </If>
+                                  <If Condition="[Transation.SpecificContent(&quot;Content Category&quot;).ToString.Equals(&quot;Gaming&quot;)]" DisplayName="Gaming If Statement" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="If_10">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If.Then>
+                                      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438.666666666667,535.333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_7">
+                                        <TryCatch.Try>
+                                          <Sequence sap:VirtualizedContainerService.HintSize="376,300.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Hey &quot; + Transation.SpecificContent(&quot;First Name&quot;).ToString + &quot; &quot; + Transation.SpecificContent(&quot;Last Name&quot;).ToString + &quot;,&quot; + Environment.NewLine + Environment.NewLine + &quot;Here's your &quot; + Transation.SpecificContent(&quot;Intervals&quot;).ToString.ToLower + &quot; content!&quot; + Environment.NewLine + Environment.NewLine + IGN.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;) + Environment.NewLine + Gamespot.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;) + Environment.NewLine + PlayStation.Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,146.666666666667" sap2010:WorkflowViewState.IdRef="SendOutlookMail_9" IsBodyHtml="False" IsDraft="False" Subject="Content Aggregator App - Gaming - Weekdays" To="[Transation.SpecificContent(&quot;Email&quot;).ToString]">
+                                              <ui:SendOutlookMail.Files>
+                                                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                                              </ui:SendOutlookMail.Files>
+                                            </ui:SendOutlookMail>
+                                            <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_12" Status="Successful" TransactionItem="[Transation]">
+                                              <ui:SetTransactionStatus.Analytics>
+                                                <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                              </ui:SetTransactionStatus.Analytics>
+                                              <ui:SetTransactionStatus.Output>
+                                                <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                              </ui:SetTransactionStatus.Output>
+                                            </ui:SetTransactionStatus>
+                                          </Sequence>
+                                        </TryCatch.Try>
+                                        <TryCatch.Catches>
+                                          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404.666666666667,21.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_6">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <ActivityAction x:TypeArguments="s:Exception">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                              </ActivityAction.Argument>
+                                              <ui:SetTransactionStatus ContinueOnError="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set Transaction Status" ErrorType="Business" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_13" Reason="Email failed to send" Status="Failed" TransactionItem="[Transation]">
+                                                <ui:SetTransactionStatus.Analytics>
+                                                  <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                                </ui:SetTransactionStatus.Analytics>
+                                                <ui:SetTransactionStatus.Output>
+                                                  <scg:Dictionary x:TypeArguments="x:String, InArgument" />
+                                                </ui:SetTransactionStatus.Output>
+                                              </ui:SetTransactionStatus>
+                                            </ActivityAction>
+                                          </Catch>
+                                        </TryCatch.Catches>
+                                      </TryCatch>
+                                    </If.Then>
+                                  </If>
+                                </Sequence>
+                              </If.Then>
+                            </If>
+                          </Sequence>
+                          <FlowStep.Next>
+                            <x:Reference>__ReferenceID0</x:Reference>
+                          </FlowStep.Next>
+                        </FlowStep>
+                      </FlowDecision.False>
+                    </FlowDecision>
+                  </FlowStep.Next>
+                </FlowStep>
+              </FlowStep.Next>
+            </FlowStep>
+          </FlowStep.Next>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <x:Reference>__ReferenceID2</x:Reference>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID3</x:Reference>
+    <x:Reference>__ReferenceID4</x:Reference>
+    <x:Reference>__ReferenceID5</x:Reference>
+    <FlowStep x:Name="__ReferenceID7">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">200,96</av:Point>
+          <av:Size x:Key="ShapeSize">200,68</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">300,164 300,186</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Sequence DisplayName="Config" sap:VirtualizedContainerService.HintSize="200,68" sap2010:WorkflowViewState.IdRef="Sequence_34">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:String" Name="ToborConfig" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:ReadTextFile Content="[ToborConfig]" DisplayName="Read Text File" FileName="Config.txt" sap:VirtualizedContainerService.HintSize="384,80.6666666666667" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+        <ui:DeserializeJsonArray DisplayName="Deserialize JSON Array" sap:VirtualizedContainerService.HintSize="384,62" sap2010:WorkflowViewState.IdRef="DeserializeJsonArray_1" JsonArray="[Config]" JsonString="[ToborConfig]" />
+      </Sequence>
+      <FlowStep.Next>
+        <x:Reference>__ReferenceID6</x:Reference>
+      </FlowStep.Next>
+    </FlowStep>
+  </Flowchart>
+</Activity>

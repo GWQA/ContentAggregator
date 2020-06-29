@@ -1,0 +1,20 @@
+[
+{
+"RandomFirstNames": "https://www.bestrandoms.com/random-names",
+"RandomLastNames": "https://www.bestrandoms.com/random-last-names",
+"RandomAddressAndPhoneNumber": "https://www.bestrandoms.com/random-address-in-uk",
+"FakeDatabase": "UserDatabase.xlsx"
+},
+
+{
+"GamingWebsite1": "https://www.gamespot.com/games/",
+"GamingWebsite2": "https://www.ign.com/news",
+"GamingWebsite3": "https://blog.playstation.com/",
+"FilmWebsite1": "https://www.imdb.com/news/celebrity/?ref_=nv_cel_nw",
+"FilmWebsite2": "https://www.rottentomatoes.com/browse/upcoming",
+"FilmWebsite3": "https://screenrant.com/movie-news/",
+"SportWebsite1": "https://www.itv.com/news/sport/",
+"SportWebsite2": "https://sports.yahoo.com/",
+"SportWebsite3": "https://www.espn.co.uk/"
+}
+]

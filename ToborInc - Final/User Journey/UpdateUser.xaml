@@ -1,0 +1,238 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="UpdateUser" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="664.666666666667,2226.66666666667" sap2010:WorkflowViewState.IdRef="UpdateUser_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="23">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="36">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="UpdateUser" sap:VirtualizedContainerService.HintSize="642.666666666667,2022" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="Outlook_3" />
+      <Variable x:TypeArguments="x:String" Name="EmailAddress2" />
+      <Variable x:TypeArguments="s:String[]" Name="Details_3" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:GetOutlookMailMessages Filter="{x:Null}" TimeoutMS="{x:Null}" Account="GarethQARPA@outlook.com" DisplayName="Get Outlook Mail Messages" GetAttachements="False" sap:VirtualizedContainerService.HintSize="600.666666666667,22" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="Inbox" MarkAsRead="False" Messages="[Outlook_3]" OnlyUnreadMessages="True" Top="30" />
+    <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="600.666666666667,997.333333333333" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Outlook_3]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="snm:MailMessage">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="Email" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="564,860" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If Condition="[email.Subject.Contains(&quot;UPDATE&quot;)]" sap:VirtualizedContainerService.HintSize="522,768" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,616" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="FirstName" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="334,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="s:String[]">[Details_3]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:String[]">[Email.Body.Split({vbCrLf}, StringSplitOptions.RemoveEmptyEntries).ToArray]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="334,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_4">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[EmailAddress2]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[Details_3(15).Split("&lt;"c)(0).Trim]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[EmailAddress2]" />
+                  <Assign sap:VirtualizedContainerService.HintSize="334,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_5">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[FirstName]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[Details_3(1)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:ReplyToOutlookMailMessage TimeoutMS="{x:Null}" Body="[&quot;Hi &quot; + FirstName + &quot;,&quot; + &quot;We'll update your shortly. Kind Regards, Tobor Inc.&quot;]" DisplayName="Registration Receipt" sap:VirtualizedContainerService.HintSize="334,118" sap2010:WorkflowViewState.IdRef="ReplyToOutlookMailMessage_1" MailMessage="[Email]" ReplyAll="False">
+                    <ui:ReplyToOutlookMailMessage.Files>
+                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                    </ui:ReplyToOutlookMailMessage.Files>
+                  </ui:ReplyToOutlookMailMessage>
+                </Sequence>
+              </If.Then>
+            </If>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="600.666666666667,830.666666666667" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" WorkbookPath="UserDatabase.xlsx">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Update" sap:VirtualizedContainerService.HintSize="380,722" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="sd:DataTable" Name="DatabaseData_2" />
+              <Variable x:TypeArguments="x:Int32" Name="UpdateRow" />
+              <Variable x:TypeArguments="x:String" Name="UpdatedDetails" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[DatabaseData_2]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="338,58.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelReadRange_2" SheetName="Sheet1">
+              <ui:ExcelReadRange.Range>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" Value="" />
+                </InArgument>
+              </ui:ExcelReadRange.Range>
+            </ui:ExcelReadRange>
+            <ui:LookupDataTable CellValue="{x:Null}" LookupColumnIndex="{x:Null}" LookupDataColumn="{x:Null}" TargetColumnIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[DatabaseData_2]" DisplayName="Lookup Data Table" sap:VirtualizedContainerService.HintSize="338,22" sap2010:WorkflowViewState.IdRef="LookupDataTable_1" LookupColumnName="Email" LookupValue="[EmailAddress2]" RowIndex="[UpdateRow]" />
+            <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="338,342.666666666667" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+              <ui:MultipleAssign.AssignOperations>
+                <scg:List x:TypeArguments="ui:AssignOperation" Capacity="16">
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Object">[DatabaseData_2.Rows(UpdateRow).item("First Name")]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Object">[Details_3(1).ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Object">[DatabaseData_2.Rows(UpdateRow).item("Last Name")]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Object">[Details_3(3).ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Object">[DatabaseData_2.Rows(UpdateRow).item("Street")]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Object">[Details_3(5).ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Object">[DatabaseData_2.Rows(UpdateRow).item("City")]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Object">[Details_3(7).ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Object">[DatabaseData_2.Rows(UpdateRow).item("Postcode")]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Object">[Details_3(9).ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Object">[DatabaseData_2.Rows(UpdateRow).item("Country")]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Object">[Details_3(11).ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Object">[DatabaseData_2.Rows(UpdateRow).item("Phone Number")]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Object">[Details_3(13).Replace("+44 ", "").ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_8">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Object">[DatabaseData_2.Rows(UpdateRow).item("Content Category")]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Object">[Details_3(17).ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                  <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
+                    <ui:AssignOperation.To>
+                      <OutArgument x:TypeArguments="x:Object">[DatabaseData_2.Rows(UpdateRow).item("Intervals")]</OutArgument>
+                    </ui:AssignOperation.To>
+                    <ui:AssignOperation.Value>
+                      <InArgument x:TypeArguments="x:Object">[Details_3(19).ToString]</InArgument>
+                    </ui:AssignOperation.Value>
+                  </ui:AssignOperation>
+                </scg:List>
+              </ui:MultipleAssign.AssignOperations>
+            </ui:MultipleAssign>
+            <ui:ExcelWriteRange AddHeaders="True" DataTable="[DatabaseData_2]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="338,86.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Sheet1" StartingCell="A1" />
+          </Sequence>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+    </ui:ExcelApplicationScope>
+  </Sequence>
+</Activity>
